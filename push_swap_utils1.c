@@ -24,8 +24,8 @@ void	ft_save_nbrs(t_push_swap *nbrs)
 	nbrs->j = 0;
 	while (nbrs->split[nbrs->j])
 	{
-		nbrs->save[nbrs->count] = ft_atoi(nbrs->split, nbrs->split[nbrs->j]);
-		nbrs->count++;
+		nbrs->save[nbrs->size] = ft_atoi(nbrs->split, nbrs->split[nbrs->j]);
+		nbrs->size++;
 		nbrs->j++;
 	}
 }
@@ -33,10 +33,10 @@ void	ft_save_nbrs(t_push_swap *nbrs)
 void	ft_check_duplicates(t_push_swap *nbrs)
 {
 	nbrs->i = 0;
-	while (nbrs->i < nbrs->count)
+	while (nbrs->i < nbrs->size)
 	{
 		nbrs->j = nbrs->i + 1;
-		while (nbrs->j < nbrs->count)
+		while (nbrs->j < nbrs->size)
 		{
 			if (nbrs->save[nbrs->i] == nbrs->save[nbrs->j])
 			{
@@ -54,16 +54,16 @@ void	ft_check_args(int ac, char **av, t_push_swap *nbrs)
 {
 	ft_check_strs(ac, av, nbrs);
 	nbrs->i = 1;
-	nbrs->count = 0;
+	nbrs->size = 0;
 	while (nbrs->i < ac)
 	{
-		nbrs->count += ft_word_count(av[nbrs->i], ' ');
+		nbrs->size += ft_word_count(av[nbrs->i], ' ');
 		nbrs->i++;
 	}
-	nbrs->save = malloc((nbrs->count) * sizeof(int *));
+	nbrs->save = malloc((nbrs->size) * sizeof(int *));
 	if (!nbrs->save)
 		ft_errormsg("Error\n");
-	nbrs->count = 0;
+	nbrs->size = 0;
 	nbrs->i = 1;
 	while (nbrs->i < ac)
 	{
@@ -73,4 +73,7 @@ void	ft_check_args(int ac, char **av, t_push_swap *nbrs)
 		nbrs->i++;
 	}
 	ft_check_duplicates(nbrs);
+	ft_creat_list(nbrs);
+	free(nbrs->save);
+	nbrs->save = NULL;
 }

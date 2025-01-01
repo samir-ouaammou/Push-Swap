@@ -64,6 +64,8 @@ int	ft_atoi(char **temp, const char *str)
 			ft_free_and_exit(temp);
 		i++;
 	}
+	if ((str[i] == '-') || (res == 0 && str[i] == '-'))
+		ft_free_and_exit(temp);
 	return (res * sgn);
 }
 

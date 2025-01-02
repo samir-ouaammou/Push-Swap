@@ -22,8 +22,17 @@ int	main(int ac, char **av)
 		exit(0);
 	ft_push_swap_init(&nbrs);
 	ft_check_args(ac, av, &nbrs);
-	// ft_swap_a(&nbrs);
-	// ft_push_a(&nbrs);
+	ft_swap_a(&nbrs);
+	ft_swap_b(&nbrs);
+	ft_s_swap(&nbrs);
+	ft_push_a(&nbrs);
+	ft_push_b(&nbrs);
+	ft_rotate_a(&nbrs);
+	ft_rotate_b(&nbrs);
+	ft_rotate_rr(&nbrs);
+	ft_reverse_rotate_a(&nbrs);
+	ft_reverse_rotate_b(&nbrs);
+	ft_reverse_rotate_both(&nbrs);
 	while (nbrs.stack_a)
 	{
 		printf("%d\n", nbrs.stack_a->value);

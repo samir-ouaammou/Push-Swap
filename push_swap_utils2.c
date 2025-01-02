@@ -15,6 +15,7 @@ void	ft_errormsg(char *msg)
 	write(2, msg, ft_strlen(msg));
 	exit(-1);
 }
+
 void	ft_check_strs(int ac, char **av, t_push_swap *nbrs)
 {
 	nbrs->i = 1;

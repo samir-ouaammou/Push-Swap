@@ -53,8 +53,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 
 void	ft_creat_list(t_push_swap *nbrs)
 {
-	t_list *lst;
-	t_list *new;
+	t_list	*lst;
+	t_list	*new;
 
 	lst = NULL;
 	lst = NULL;

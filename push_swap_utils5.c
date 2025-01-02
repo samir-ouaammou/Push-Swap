@@ -25,32 +25,6 @@ t_list	*ft_lstnew(int nbr)
 	return (lst);
 }
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
-{
-	if (new)
-	{
-		new->next = *lst;
-		*lst = new;
-	}
-}
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*temp;
-
-	if (!new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	temp = *lst;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = new;
-}
-
 void	ft_creat_list(t_push_swap *nbrs)
 {
 	t_list	*lst;
@@ -66,4 +40,27 @@ void	ft_creat_list(t_push_swap *nbrs)
 		nbrs->i++;
 	}
 	nbrs->stack_a = lst;
+}
+
+void	ft_reverse_rotate_both(t_push_swap *nbrs)
+{
+	if (ft_lstsize(nbrs->stack_a) > 1)
+		ft_reverse_rotate_a(nbrs);
+	if (ft_lstsize(nbrs->stack_b) > 1)
+		ft_reverse_rotate_b(nbrs);
+}
+
+void	ft_lstclear(t_push_swap *nbrs, t_list **list)
+{
+	if (!list)
+		return ;
+	nbrs->help1 = *list;
+	while (nbrs->help1)
+	{
+		nbrs->help2 = nbrs->help1;
+		nbrs->help1 = nbrs->help1->next;
+		free(nbrs->help2);
+		nbrs->help2 = NULL;
+	}
+	*list = NULL;
 }

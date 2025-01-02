@@ -1,15 +1,5 @@
 #include "push_swap.h"
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
 void	ft_errormsg(char *msg)
 {
 	write(2, msg, ft_strlen(msg));
@@ -34,32 +24,41 @@ void	ft_check_strs(int ac, char **av, t_push_swap *nbrs)
 	}
 }
 
-int	ft_atoi(char **temp, const char *str)
+int	ft_check_str(const char *str, int *sgn, size_t *i)
+{
+	*i = 0;
+	*sgn = 1;
+	if ((str[*i] == '-' || str[*i] == '+') && (str[*i + 1] < '0'
+			|| str[*i + 1] > '9'))
+		return (0);
+	return (1);
+}
+
+int	ft_atoi(t_push_swap *nbrs, char **temp, const char *str)
 {
 	long	res;
 	size_t	i;
 	int		sgn;
 
-	i = 0;
-	while (str[i] && ((str[i] >= 9 && str[i] <= 13) || str[i] == ' '))
+	if (!ft_check_str(str, &sgn, &i))
+		ft_free_and_exit(nbrs, temp);
+	res = 0;
+	if (str[i] == '+')
 		i++;
-	sgn = 1;
-	if (str[i] == '+' || str[i] == '-')
+	if (str[i] == '-')
 	{
-		if (str[i] == '-')
-			sgn = -1;
+		sgn = -1;
 		i++;
 	}
-	res = 0;
 	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 	{
 		res = res * 10 + (str[i] - '0');
 		if (((res * sgn) > 2147483647) || ((res * sgn) < -2147483648))
-			ft_free_and_exit(temp);
+			ft_free_and_exit(nbrs, temp);
 		i++;
 	}
-	if ((str[i] == '-') || (res == 0 && sgn == -1))
-		ft_free_and_exit(temp);
+	if (str[i] == '-' || str[i] == '+')
+		ft_free_and_exit(nbrs, temp);
 	return (res * sgn);
 }
 

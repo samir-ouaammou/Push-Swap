@@ -26,13 +26,13 @@ typedef struct s_push_swap
 	t_list			*help1;
 	t_list			*help2;
 }					t_push_swap;
+
 int					ft_isdigit(int c);
 int					ft_isempty(char *str);
 void				ft_errormsg(char *msg);
 int					ft_lstsize(t_list *lst);
 void				ft_free_args(char **temp);
 size_t				ft_strlen(const char *str);
-void				ft_free_and_exit(char **str);
 void				ft_swap_a(t_push_swap *nbrs);
 void				ft_swap_b(t_push_swap *nbrs);
 void				ft_s_swap(t_push_swap *nbrs);
@@ -43,14 +43,16 @@ void				ft_rotate_b(t_push_swap *nbrs);
 void				ft_rotate_rr(t_push_swap *nbrs);
 void				ft_creat_list(t_push_swap *nbrs);
 char				**ft_split(char const *s, char c);
-int					ft_atoi(char **temp, const char *str);
 int					ft_word_count(const char *str, char c);
 void				ft_reverse_rotate_a(t_push_swap *nbrs);
 void				ft_reverse_rotate_b(t_push_swap *nbrs);
 void				ft_reverse_rotate_both(t_push_swap *nbrs);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstadd_front(t_list **lst, t_list *new);
+void				ft_lstclear(t_push_swap *nbrs, t_list **list);
+void				ft_free_and_exit(t_push_swap *nbrs, char **str);
 void				ft_check_strs(int ac, char **av, t_push_swap *nbrs);
 void				ft_check_args(int ac, char **av, t_push_swap *nbrs);
+int					ft_atoi(t_push_swap *nbrs, char **temp, const char *str);
 
 #endif

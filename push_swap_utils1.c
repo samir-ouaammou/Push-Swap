@@ -16,7 +16,7 @@ int	ft_isempty(char *str)
 
 int	ft_isdigit(int c)
 {
-	return ((c >= '0' && c <= '9') || (c == 32) || (c == '-'));
+	return ((c >= '0' && c <= '9') || (c == 32) || (c == '-') || (c == '+'));
 }
 
 void	ft_save_nbrs(t_push_swap *nbrs)
@@ -24,7 +24,8 @@ void	ft_save_nbrs(t_push_swap *nbrs)
 	nbrs->j = 0;
 	while (nbrs->split[nbrs->j])
 	{
-		nbrs->save[nbrs->size] = ft_atoi(nbrs->split, nbrs->split[nbrs->j]);
+		nbrs->save[nbrs->size] = ft_atoi(nbrs, nbrs->split,
+				nbrs->split[nbrs->j]);
 		nbrs->size++;
 		nbrs->j++;
 	}

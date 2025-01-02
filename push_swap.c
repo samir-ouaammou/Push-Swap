@@ -38,5 +38,7 @@ int	main(int ac, char **av)
 		printf("%d\n", nbrs.stack_a->value);
 		nbrs.stack_a = nbrs.stack_a->next;
 	}
+	ft_lstclear(&nbrs, &nbrs.stack_a);
+	ft_lstclear(&nbrs, &nbrs.stack_b);
 	return (0);
 }

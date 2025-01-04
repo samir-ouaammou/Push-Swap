@@ -44,10 +44,20 @@ void	ft_creat_list(t_push_swap *nbrs)
 
 void	ft_reverse_rotate_both(t_push_swap *nbrs)
 {
-	if (ft_lstsize(nbrs->stack_a) > 1)
+	if (ft_lstsize(nbrs->stack_a) > 1 && ft_lstsize(nbrs->stack_b) > 1)
+	{
+		nbrs->nbr = 1337;
 		ft_reverse_rotate_a(nbrs);
-	if (ft_lstsize(nbrs->stack_b) > 1)
+		nbrs->nbr = 1337;
 		ft_reverse_rotate_b(nbrs);
+		write(1, "rrr\n", 4);
+	}
+	else
+	{
+		nbrs->nbr = 0;
+		ft_reverse_rotate_a(nbrs);
+		ft_reverse_rotate_b(nbrs);
+	}
 }
 
 void	ft_lstclear(t_push_swap *nbrs, t_list **list)

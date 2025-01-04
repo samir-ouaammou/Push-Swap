@@ -17,6 +17,7 @@ typedef struct s_push_swap
 {
 	int				i;
 	int				j;
+	int				nbr;
 	int				size;
 	int				temp;
 	int				*save;
@@ -46,13 +47,20 @@ char				**ft_split(char const *s, char c);
 int					ft_word_count(const char *str, char c);
 void				ft_reverse_rotate_a(t_push_swap *nbrs);
 void				ft_reverse_rotate_b(t_push_swap *nbrs);
+void				ft_sort_five_elements(t_push_swap *nbrs);
+void				ft_sort_four_elements(t_push_swap *nbrs);
 void				ft_reverse_rotate_both(t_push_swap *nbrs);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstadd_front(t_list **lst, t_list *new);
+int					ft_is_sorted(t_push_swap *nbrs, t_list *lst);
 void				ft_lstclear(t_push_swap *nbrs, t_list **list);
 void				ft_free_and_exit(t_push_swap *nbrs, char **str);
 void				ft_check_strs(int ac, char **av, t_push_swap *nbrs);
 void				ft_check_args(int ac, char **av, t_push_swap *nbrs);
 int					ft_atoi(t_push_swap *nbrs, char **temp, const char *str);
+void				ft_sort_two_elements(t_push_swap *nbrs, t_list *lst,
+						char c);
+void				ft_sort_three_elements(t_push_swap *nbrs, t_list *lst,
+						char c);
 
 #endif

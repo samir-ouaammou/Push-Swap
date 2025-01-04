@@ -75,6 +75,4 @@ void	ft_check_args(int ac, char **av, t_push_swap *nbrs)
 	}
 	ft_check_duplicates(nbrs);
 	ft_creat_list(nbrs);
-	free(nbrs->save);
-	nbrs->save = NULL;
 }

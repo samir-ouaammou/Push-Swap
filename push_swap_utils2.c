@@ -28,8 +28,8 @@ int	ft_check_str(const char *str, int *sgn, size_t *i)
 {
 	*i = 0;
 	*sgn = 1;
-	if ((str[*i] == '-' || str[*i] == '+') && (str[*i + 1] < '0'
-			|| str[*i + 1] > '9'))
+	if ((str[*i] == '-' || str[*i] == '+') && (str[*i + 1] < '0' || str[*i
+			+ 1] > '9'))
 		return (0);
 	return (1);
 }

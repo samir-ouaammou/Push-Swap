@@ -43,11 +43,11 @@ int	main(int ac, char **av)
 	if (nbrs.size == 5)
 		ft_sort_five_elements(&nbrs);
 	// printf("\n");
-	// while (nbrs.stack_a)
-	// {
-	// 	printf("%d\n", nbrs.stack_a->value);
-	// 	nbrs.stack_a = nbrs.stack_a->next;
-	// }
+	// // while (nbrs.stack_a)
+	// // {
+	// // 	printf("%d\n", nbrs.stack_a->value);
+	// // 	nbrs.stack_a = nbrs.stack_a->next;
+	// // }
 	ft_free_all(&nbrs);
 	return (0);
 }

@@ -7,6 +7,8 @@ void	ft_push_swap_init(t_push_swap *nbrs)
 	nbrs->nbr = 0;
 	nbrs->size = 0;
 	nbrs->temp = 0;
+	nbrs->start = 0;
+	nbrs->end = 0;
 	nbrs->save = 0;
 	nbrs->stack_a = NULL;
 	nbrs->stack_b = NULL;
@@ -32,6 +34,11 @@ int	main(int ac, char **av)
 		exit(0);
 	ft_push_swap_init(&nbrs);
 	ft_check_args(ac, av, &nbrs);
+	if (ft_is_sorted(&nbrs, nbrs.stack_a))
+	{
+		ft_free_all(&nbrs);
+		return (0);
+	}
 	if (nbrs.size <= 1)
 		ft_free_all(&nbrs);
 	if (nbrs.size == 2)
@@ -42,15 +49,17 @@ int	main(int ac, char **av)
 		ft_sort_four_elements(&nbrs);
 	if (nbrs.size == 5)
 		ft_sort_five_elements(&nbrs);
-	// printf("\n");
-	// // while (nbrs.stack_a)
-	// // {
-	// // 	printf("%d\n", nbrs.stack_a->value);
-	// // 	nbrs.stack_a = nbrs.stack_a->next;
-	// // }
+	if (nbrs.size >= 6)
+		ft_sort_large_stack(&nbrs);
 	ft_free_all(&nbrs);
 	return (0);
 }
+// printf("\n");
+// while (nbrs.stack_a)
+// {
+// 	printf("%d\n", nbrs.stack_a->value);
+// 	nbrs.stack_a = nbrs.stack_a->next;
+// }
 // ft_swap_a(&nbrs);
 // ft_swap_b(&nbrs);
 // ft_s_swap(&nbrs);

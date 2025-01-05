@@ -1,5 +1,30 @@
 #include "push_swap.h"
 
+void	ft_sort_tab(t_push_swap *nbrs)
+{
+	nbrs->i = 0;
+	while (nbrs->i < nbrs->size)
+	{
+		nbrs->j = nbrs->i + 1;
+		while (nbrs->j < nbrs->size)
+		{
+			if (nbrs->save[nbrs->i] > nbrs->save[nbrs->j])
+			{
+				nbrs->temp = nbrs->save[nbrs->i];
+				nbrs->save[nbrs->i] = nbrs->save[nbrs->j];
+				nbrs->save[nbrs->j] = nbrs->temp;
+			}
+			nbrs->j++;
+		}
+		nbrs->i++;
+	}
+	nbrs->start = 0;
+	if (ft_lstsize(nbrs->stack_a) <= 100)
+		nbrs->end = nbrs->size / 6;
+	else
+		nbrs->end = nbrs->size / 16;
+}
+
 int	ft_is_sorted(t_push_swap *nbrs, t_list *lst)
 {
 	nbrs->help1 = lst;

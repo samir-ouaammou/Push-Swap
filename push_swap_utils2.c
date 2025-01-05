@@ -1,84 +1,98 @@
 #include "push_swap.h"
 
-void	ft_errormsg(char *msg)
+char	*ft_strdup(const char *str)
 {
-	write(2, msg, ft_strlen(msg));
-	exit(-1);
-}
-
-void	ft_check_strs(int ac, char **av, t_push_swap *nbrs)
-{
-	nbrs->i = 1;
-	while (nbrs->i < ac)
-	{
-		nbrs->j = 0;
-		while (av[nbrs->i][nbrs->j])
-		{
-			if (!ft_isdigit(av[nbrs->i][nbrs->j]))
-				ft_errormsg("Error\n");
-			nbrs->j++;
-		}
-		if (!ft_isempty(av[nbrs->i]))
-			ft_errormsg("Error\n");
-		nbrs->i++;
-	}
-}
-
-int	ft_check_str(const char *str, int *sgn, size_t *i)
-{
-	*i = 0;
-	*sgn = 1;
-	if ((str[*i] == '-' || str[*i] == '+') && (str[*i + 1] < '0'
-			|| str[*i + 1] > '9'))
-		return (0);
-	return (1);
-}
-
-int	ft_atoi(t_push_swap *nbrs, char **temp, const char *str)
-{
-	long	res;
 	size_t	i;
-	int		sgn;
+	char	*res;
 
-	if (!ft_check_str(str, &sgn, &i))
-		ft_free_and_exit(nbrs, temp);
-	res = 0;
-	if (str[i] == '+')
-		i++;
-	if (str[i] == '-')
-	{
-		sgn = -1;
-		i++;
-	}
-	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
-	{
-		res = res * 10 + (str[i] - '0');
-		if (((res * sgn) > 2147483647) || ((res * sgn) < -2147483648))
-			ft_free_and_exit(nbrs, temp);
-		i++;
-	}
-	if (str[i] == '-' || str[i] == '+')
-		ft_free_and_exit(nbrs, temp);
-	return (res * sgn);
-}
-
-int	ft_word_count(const char *str, char c)
-{
-	int		count;
-	size_t	i;
-
-	count = 0;
+	res = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (!res)
+		return (NULL);
 	i = 0;
 	while (str[i])
 	{
-		while (str[i] && str[i] == c)
+		res[i] = str[i];
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	size_t	size;
+	size_t	s_len;
+	char	*res;
+
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (s_len - start < len)
+		size = s_len - start;
+	else
+		size = len;
+	res = (char *)malloc((size + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (s[i] && i < size)
+	{
+		res[i] = s[start + i];
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
+}
+
+void	*ft_free(char **str, int count)
+{
+	while (count > 0)
+	{
+		free(str[count - 1]);
+		count--;
+	}
+	free(str);
+	return (NULL);
+}
+
+char	**ft_split2(char **res, const char *s, char c)
+{
+	size_t	i;
+	size_t	j;
+	size_t	h;
+
+	i = 0;
+	h = 0;
+	while (s[i])
+	{
+		while (s[i] && s[i] == c)
 			i++;
-		if (str[i])
+		if (s[i])
 		{
-			count++;
-			while (str[i] && str[i] != c)
+			j = i;
+			while (s[i] && s[i] != c)
 				i++;
+			res[h] = ft_substr(s, j, i - j);
+			if (!res[h])
+				return (ft_free(res, h));
+			h++;
 		}
 	}
-	return (count);
+	res[h] = NULL;
+	return (res);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**res;
+
+	if (!s)
+		return (NULL);
+	res = (char **)malloc(sizeof(char *) * (ft_word_count(s, c) + 1));
+	if (!res)
+		return (NULL);
+	return (ft_split2(res, s, c));
 }

@@ -1,61 +1,76 @@
 #include "push_swap.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_lstsize(t_list *lst)
 {
-	size_t	i;
+	int	count;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-void	ft_free_args(char **temp)
-{
-	int	i;
-
-	i = 0;
-	while (temp[i])
+	count = 0;
+	while (lst)
 	{
-		free(temp[i]);
-		temp[i] = NULL;
-		i++;
+		count++;
+		lst = lst->next;
 	}
-	free(temp);
-	temp = NULL;
+	return (count);
 }
 
-void	ft_free_and_exit(t_push_swap *nbrs, char **str)
+t_list	*ft_lstnew(int nbr)
 {
-	free(nbrs->save);
-	nbrs->save = NULL;
-	ft_free_args(str);
-	write(2, "Error\n", 6);
-	exit(-1);
+	t_list	*lst;
+
+	lst = (t_list *)malloc(sizeof(t_list) * 1);
+	if (!lst)
+		return (NULL);
+	lst->value = nbr;
+	lst->next = NULL;
+	return (lst);
 }
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_creat_list(t_push_swap *nbrs)
 {
-	if (new)
+	t_list	*lst;
+	t_list	*new;
+
+	lst = NULL;
+	lst = NULL;
+	nbrs->i = 0;
+	while (nbrs->i < nbrs->size)
 	{
-		new->next = *lst;
-		*lst = new;
+		new = ft_lstnew(nbrs->save[nbrs->i]);
+		ft_lstadd_back(&lst, new);
+		nbrs->i++;
+	}
+	nbrs->stack_a = lst;
+}
+
+void	ft_reverse_rotate_both(t_push_swap *nbrs)
+{
+	if (ft_lstsize(nbrs->stack_a) > 1 && ft_lstsize(nbrs->stack_b) > 1)
+	{
+		nbrs->nbr = 1337;
+		ft_reverse_rotate_a(nbrs);
+		nbrs->nbr = 1337;
+		ft_reverse_rotate_b(nbrs);
+		write(1, "rrr\n", 4);
+	}
+	else
+	{
+		nbrs->nbr = 0;
+		ft_reverse_rotate_a(nbrs);
+		ft_reverse_rotate_b(nbrs);
 	}
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstclear(t_push_swap *nbrs, t_list **list)
 {
-	t_list	*temp;
-
-	if (!new)
+	if (!list)
 		return ;
-	if (!*lst)
+	nbrs->help1 = *list;
+	while (nbrs->help1)
 	{
-		*lst = new;
-		return ;
+		nbrs->help2 = nbrs->help1;
+		nbrs->help1 = nbrs->help1->next;
+		free(nbrs->help2);
+		nbrs->help2 = NULL;
 	}
-	temp = *lst;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = new;
+	*list = NULL;
 }

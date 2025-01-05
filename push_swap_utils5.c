@@ -1,76 +1,85 @@
 #include "push_swap.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_rotate_a(t_push_swap *nbrs)
 {
-	int	count;
-
-	count = 0;
-	while (lst)
-	{
-		count++;
-		lst = lst->next;
-	}
-	return (count);
+	nbrs->size = ft_lstsize(nbrs->stack_a);
+	if (nbrs->size < 2)
+		return ;
+	if (nbrs->nbr != 1337)
+		write(1, "ra\n", 3);
+	nbrs->help1 = nbrs->stack_a;
+	nbrs->stack_a = nbrs->stack_a->next;
+	nbrs->help1->next = NULL;
+	ft_lstadd_back(&nbrs->stack_a, nbrs->help1);
+	nbrs->nbr = 0;
 }
 
-t_list	*ft_lstnew(int nbr)
+void	ft_rotate_b(t_push_swap *nbrs)
 {
-	t_list	*lst;
-
-	lst = (t_list *)malloc(sizeof(t_list) * 1);
-	if (!lst)
-		return (NULL);
-	lst->value = nbr;
-	lst->next = NULL;
-	return (lst);
+	nbrs->size = ft_lstsize(nbrs->stack_b);
+	if (nbrs->size < 2)
+		return ;
+	if (nbrs->nbr != 1337)
+		write(1, "rb\n", 3);
+	nbrs->help1 = nbrs->stack_b;
+	nbrs->stack_b = nbrs->stack_b->next;
+	nbrs->help1->next = NULL;
+	ft_lstadd_back(&nbrs->stack_b, nbrs->help1);
+	nbrs->nbr = 0;
 }
 
-void	ft_creat_list(t_push_swap *nbrs)
-{
-	t_list	*lst;
-	t_list	*new;
-
-	lst = NULL;
-	lst = NULL;
-	nbrs->i = 0;
-	while (nbrs->i < nbrs->size)
-	{
-		new = ft_lstnew(nbrs->save[nbrs->i]);
-		ft_lstadd_back(&lst, new);
-		nbrs->i++;
-	}
-	nbrs->stack_a = lst;
-}
-
-void	ft_reverse_rotate_both(t_push_swap *nbrs)
+void	ft_rotate_rr(t_push_swap *nbrs)
 {
 	if (ft_lstsize(nbrs->stack_a) > 1 && ft_lstsize(nbrs->stack_b) > 1)
 	{
 		nbrs->nbr = 1337;
-		ft_reverse_rotate_a(nbrs);
+		ft_rotate_a(nbrs);
 		nbrs->nbr = 1337;
-		ft_reverse_rotate_b(nbrs);
-		write(1, "rrr\n", 4);
+		ft_rotate_b(nbrs);
+		write(1, "rr\n", 3);
 	}
 	else
 	{
 		nbrs->nbr = 0;
-		ft_reverse_rotate_a(nbrs);
-		ft_reverse_rotate_b(nbrs);
+		ft_rotate_a(nbrs);
+		ft_rotate_b(nbrs);
 	}
 }
 
-void	ft_lstclear(t_push_swap *nbrs, t_list **list)
+void	ft_reverse_rotate_a(t_push_swap *nbrs)
 {
-	if (!list)
+	nbrs->size = ft_lstsize(nbrs->stack_a);
+	if (nbrs->size < 2)
 		return ;
-	nbrs->help1 = *list;
-	while (nbrs->help1)
-	{
-		nbrs->help2 = nbrs->help1;
+	if (nbrs->nbr != 1337)
+		write(1, "rra\n", 4);
+	nbrs->help1 = nbrs->stack_a;
+	while (nbrs->help1->next)
 		nbrs->help1 = nbrs->help1->next;
-		free(nbrs->help2);
-		nbrs->help2 = NULL;
-	}
-	*list = NULL;
+	nbrs->help2 = nbrs->stack_a;
+	while (nbrs->help2->next != nbrs->help1)
+		nbrs->help2 = nbrs->help2->next;
+	nbrs->help2->next = NULL;
+	nbrs->help1->next = nbrs->stack_a;
+	nbrs->stack_a = nbrs->help1;
+	nbrs->nbr = 0;
+}
+
+void	ft_reverse_rotate_b(t_push_swap *nbrs)
+{
+	nbrs->size = ft_lstsize(nbrs->stack_b);
+	if (nbrs->size < 2)
+		return ;
+	if (nbrs->nbr != 1337)
+		write(1, "rrb\n", 4);
+	nbrs->help1 = nbrs->stack_b;
+	while (nbrs->help1->next)
+		nbrs->help1 = nbrs->help1->next;
+	nbrs->help2 = nbrs->stack_b;
+	while (nbrs->help2->next != nbrs->help1)
+		nbrs->help2 = nbrs->help2->next;
+	nbrs->help2->next = NULL;
+	nbrs->help1->next = nbrs->stack_b;
+	nbrs->stack_b = nbrs->help1;
+	nbrs->nbr = 0;
 }

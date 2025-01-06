@@ -1,11 +1,13 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <fcntl.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# define BUFFER_SIZE 1
 
 typedef struct s_list
 {
@@ -21,8 +23,10 @@ typedef struct s_push_swap
 	int				size;
 	int				temp;
 	int				start;
+	int				instructions;
 	int				end;
 	int				*save;
+	char			*line;
 	char			**split;
 	t_list			*stack_a;
 	t_list			*stack_b;
@@ -32,10 +36,12 @@ typedef struct s_push_swap
 
 int					ft_isdigit(int c);
 int					ft_isempty(char *str);
+char				*get_next_line(int fd);
 void				ft_errormsg(char *msg);
 int					ft_lstsize(t_list *lst);
 void				ft_free_args(char **temp);
 size_t				ft_strlen(const char *str);
+char				*ft_strdup(const char *str);
 void				ft_swap_a(t_push_swap *nbrs);
 void				ft_swap_b(t_push_swap *nbrs);
 void				ft_s_swap(t_push_swap *nbrs);
@@ -44,9 +50,12 @@ void				ft_push_b(t_push_swap *nbrs);
 void				ft_sort_tab(t_push_swap *nbrs);
 void				ft_rotate_a(t_push_swap *nbrs);
 void				ft_rotate_b(t_push_swap *nbrs);
+char				*ft_strjoin(char *s1, char *s2);
 void				ft_rotate_rr(t_push_swap *nbrs);
 void				ft_creat_list(t_push_swap *nbrs);
 char				**ft_split(char const *s, char c);
+int					ft_strchr(const char *str, char c);
+void				ft_push_swap_init(t_push_swap *nbrs);
 void				ft_sort_large_stack(t_push_swap *nbrs);
 int					ft_word_count(const char *str, char c);
 void				ft_reverse_rotate_a(t_push_swap *nbrs);

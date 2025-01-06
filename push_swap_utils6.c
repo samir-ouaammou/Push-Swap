@@ -5,7 +5,7 @@ void	ft_swap_a(t_push_swap *nbrs)
 	nbrs->size = ft_lstsize(nbrs->stack_a);
 	if (nbrs->size < 2)
 		return ;
-	if (nbrs->nbr != 1337)
+	if (nbrs->nbr != 1337 && nbrs->instructions == 0)
 		write(1, "sa\n", 3);
 	nbrs->temp = nbrs->stack_a->value;
 	nbrs->stack_a->value = nbrs->stack_a->next->value;
@@ -18,7 +18,7 @@ void	ft_swap_b(t_push_swap *nbrs)
 	nbrs->size = ft_lstsize(nbrs->stack_b);
 	if (nbrs->size < 2)
 		return ;
-	if (nbrs->nbr != 1337)
+	if (nbrs->nbr != 1337 && nbrs->instructions == 0)
 		write(1, "sb\n", 3);
 	nbrs->temp = nbrs->stack_b->value;
 	nbrs->stack_b->value = nbrs->stack_b->next->value;
@@ -34,7 +34,8 @@ void	ft_s_swap(t_push_swap *nbrs)
 		ft_swap_a(nbrs);
 		nbrs->nbr = 1337;
 		ft_swap_b(nbrs);
-		write(1, "ss\n", 3);
+		if (nbrs->instructions == 0)
+			write(1, "ss\n", 3);
 	}
 	else
 	{
@@ -49,7 +50,8 @@ void	ft_push_a(t_push_swap *nbrs)
 	nbrs->size = ft_lstsize(nbrs->stack_b);
 	if (nbrs->size < 1)
 		return ;
-	write(1, "pa\n", 3);
+	if (nbrs->instructions == 0)
+		write(1, "pa\n", 3);
 	nbrs->help1 = nbrs->stack_b;
 	nbrs->stack_b = nbrs->stack_b->next;
 	nbrs->help1->next = NULL;
@@ -61,7 +63,8 @@ void	ft_push_b(t_push_swap *nbrs)
 	nbrs->size = ft_lstsize(nbrs->stack_a);
 	if (nbrs->size < 1)
 		return ;
-	write(1, "pb\n", 3);
+	if (nbrs->instructions == 0)
+		write(1, "pb\n", 3);
 	nbrs->help1 = nbrs->stack_a;
 	nbrs->stack_a = nbrs->stack_a->next;
 	nbrs->help1->next = NULL;

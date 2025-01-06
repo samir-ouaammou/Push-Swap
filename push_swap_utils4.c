@@ -50,7 +50,8 @@ void	ft_reverse_rotate_both(t_push_swap *nbrs)
 		ft_reverse_rotate_a(nbrs);
 		nbrs->nbr = 1337;
 		ft_reverse_rotate_b(nbrs);
-		write(1, "rrr\n", 4);
+		if (nbrs->instructions == 0)
+			write(1, "rrr\n", 4);
 	}
 	else
 	{

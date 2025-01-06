@@ -5,7 +5,7 @@ void	ft_rotate_a(t_push_swap *nbrs)
 	nbrs->size = ft_lstsize(nbrs->stack_a);
 	if (nbrs->size < 2)
 		return ;
-	if (nbrs->nbr != 1337)
+	if (nbrs->nbr != 1337 && nbrs->instructions == 0)
 		write(1, "ra\n", 3);
 	nbrs->help1 = nbrs->stack_a;
 	nbrs->stack_a = nbrs->stack_a->next;
@@ -19,7 +19,7 @@ void	ft_rotate_b(t_push_swap *nbrs)
 	nbrs->size = ft_lstsize(nbrs->stack_b);
 	if (nbrs->size < 2)
 		return ;
-	if (nbrs->nbr != 1337)
+	if (nbrs->nbr != 1337 && nbrs->instructions == 0)
 		write(1, "rb\n", 3);
 	nbrs->help1 = nbrs->stack_b;
 	nbrs->stack_b = nbrs->stack_b->next;
@@ -36,7 +36,8 @@ void	ft_rotate_rr(t_push_swap *nbrs)
 		ft_rotate_a(nbrs);
 		nbrs->nbr = 1337;
 		ft_rotate_b(nbrs);
-		write(1, "rr\n", 3);
+		if (nbrs->instructions == 0)
+			write(1, "rr\n", 3);
 	}
 	else
 	{
@@ -51,7 +52,7 @@ void	ft_reverse_rotate_a(t_push_swap *nbrs)
 	nbrs->size = ft_lstsize(nbrs->stack_a);
 	if (nbrs->size < 2)
 		return ;
-	if (nbrs->nbr != 1337)
+	if (nbrs->nbr != 1337 && nbrs->instructions == 0)
 		write(1, "rra\n", 4);
 	nbrs->help1 = nbrs->stack_a;
 	while (nbrs->help1->next)
@@ -70,7 +71,7 @@ void	ft_reverse_rotate_b(t_push_swap *nbrs)
 	nbrs->size = ft_lstsize(nbrs->stack_b);
 	if (nbrs->size < 2)
 		return ;
-	if (nbrs->nbr != 1337)
+	if (nbrs->nbr != 1337 && nbrs->instructions == 0)
 		write(1, "rrb\n", 4);
 	nbrs->help1 = nbrs->stack_b;
 	while (nbrs->help1->next)

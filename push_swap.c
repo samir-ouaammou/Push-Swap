@@ -1,22 +1,5 @@
 #include "push_swap.h"
 
-void	ft_push_swap_init(t_push_swap *nbrs)
-{
-	nbrs->i = 0;
-	nbrs->j = 0;
-	nbrs->nbr = 0;
-	nbrs->size = 0;
-	nbrs->temp = 0;
-	nbrs->start = 0;
-	nbrs->end = 0;
-	nbrs->save = 0;
-	nbrs->stack_a = NULL;
-	nbrs->stack_b = NULL;
-	nbrs->help1 = NULL;
-	nbrs->help2 = NULL;
-	nbrs->split = NULL;
-}
-
 void	ft_free_all(t_push_swap *nbrs)
 {
 	free(nbrs->save);

@@ -22,7 +22,7 @@ void	ft_sort_tab(t_push_swap *nbrs)
 	if (ft_lstsize(nbrs->stack_a) <= 100)
 		nbrs->end = nbrs->size / 6;
 	else
-		nbrs->end = nbrs->size / 16;
+		nbrs->end = nbrs->size / 14;
 }
 
 int	ft_is_sorted(t_push_swap *nbrs, t_list *lst)

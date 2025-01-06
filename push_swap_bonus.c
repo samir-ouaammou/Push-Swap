@@ -34,27 +34,27 @@ int	ft_strcmp(t_push_swap *nbrs, const char *s1, const char *s2)
 
 void	ft_execute_instructions(t_push_swap *nbrs)
 {
-	if (ft_strcmp(nbrs, nbrs->line, "sa"))
+	if (ft_strcmp(nbrs, nbrs->line, "sa\n"))
 		ft_swap_a(nbrs);
-	else if (ft_strcmp(nbrs, nbrs->line, "sb"))
+	else if (ft_strcmp(nbrs, nbrs->line, "sb\n"))
 		ft_swap_b(nbrs);
-	else if (ft_strcmp(nbrs, nbrs->line, "ss"))
+	else if (ft_strcmp(nbrs, nbrs->line, "ss\n"))
 		ft_s_swap(nbrs);
-	else if (ft_strcmp(nbrs, nbrs->line, "pa"))
+	else if (ft_strcmp(nbrs, nbrs->line, "pa\n"))
 		ft_push_a(nbrs);
-	else if (ft_strcmp(nbrs, nbrs->line, "pb"))
+	else if (ft_strcmp(nbrs, nbrs->line, "pb\n"))
 		ft_push_b(nbrs);
-	else if (ft_strcmp(nbrs, nbrs->line, "ra"))
+	else if (ft_strcmp(nbrs, nbrs->line, "ra\n"))
 		ft_rotate_a(nbrs);
-	else if (ft_strcmp(nbrs, nbrs->line, "rb"))
+	else if (ft_strcmp(nbrs, nbrs->line, "rb\n"))
 		ft_rotate_b(nbrs);
-	else if (ft_strcmp(nbrs, nbrs->line, "rr"))
+	else if (ft_strcmp(nbrs, nbrs->line, "rr\n"))
 		ft_rotate_rr(nbrs);
-	else if (ft_strcmp(nbrs, nbrs->line, "rra"))
+	else if (ft_strcmp(nbrs, nbrs->line, "rra\n"))
 		ft_reverse_rotate_a(nbrs);
-	else if (ft_strcmp(nbrs, nbrs->line, "rrb"))
+	else if (ft_strcmp(nbrs, nbrs->line, "rrb\n"))
 		ft_reverse_rotate_b(nbrs);
-	else if (ft_strcmp(nbrs, nbrs->line, "rrr"))
+	else if (ft_strcmp(nbrs, nbrs->line, "rrr\n"))
 		ft_reverse_rotate_both(nbrs);
 	else
 		ft_free_all(nbrs);

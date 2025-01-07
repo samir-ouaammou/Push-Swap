@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: souaammo <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/01/07 10:07:55 by souaammo          #+#    #+#              #
+#    Updated: 2025/01/07 10:07:57 by souaammo         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 FILES = push_swap.c  push_swap_utils0.c  push_swap_utils1.c  push_swap_utils2.c \
 		push_swap_utils3.c	push_swap_utils4.c	push_swap_utils5.c push_swap_utils6.c \
 		push_swap_utils7.c	push_swap_utils8.c	push_swap_utils9.c

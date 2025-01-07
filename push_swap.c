@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: souaammo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/07 10:08:18 by souaammo          #+#    #+#             */
+/*   Updated: 2025/01/07 10:10:45 by souaammo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_free_all(t_push_swap *nbrs)
@@ -37,20 +49,3 @@ int	main(int ac, char **av)
 	ft_free_all(&nbrs);
 	return (0);
 }
-// printf("\n");
-// while (nbrs.stack_a)
-// {
-// 	printf("%d\n", nbrs.stack_a->value);
-// 	nbrs.stack_a = nbrs.stack_a->next;
-// }
-// ft_swap_a(&nbrs);
-// ft_swap_b(&nbrs);
-// ft_s_swap(&nbrs);
-// ft_push_a(&nbrs);
-// ft_push_b(&nbrs);
-// ft_rotate_a(&nbrs);
-// ft_rotate_b(&nbrs);
-// ft_rotate_rr(&nbrs);
-// ft_reverse_rotate_a(&nbrs);
-// ft_reverse_rotate_b(&nbrs);
-// ft_reverse_rotate_both(&nbrs);

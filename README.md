@@ -50,7 +50,7 @@ git clone https://github.com/samir-ouaammou/1337-Push_Swap
 Navigate to the project directory
 Change to the project directory:
 ```bash
-cd 1337-Push_Swap/Projects
+cd 1337-Push_Swap/Project
 ```
 Compile the source files
 To compile the project, run:

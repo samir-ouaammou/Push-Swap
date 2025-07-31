@@ -45,12 +45,12 @@ push_swap/
 Clone the repository
 Clone the repository to your local machine:
 ```bash
-git clone https://github.com/samir-ouaammou/1337-Push_Swap
+git clone https://github.com/samir-ouaammou/Push-Swap
 ```
 Navigate to the project directory
 Change to the project directory:
 ```bash
-cd 1337-Push_Swap/Project
+cd Push-Swap/Project
 ```
 Compile the source files
 To compile the project, run:
